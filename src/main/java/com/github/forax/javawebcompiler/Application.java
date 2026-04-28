@@ -9,7 +9,14 @@ public final class Application {
 
   private static final Pattern CLASSNAME_PATTERN = Pattern.compile("class\\s+(\\w+)");
 
-  // Dynamic class name extraction
+  /**
+   * Extracts the name of the public class from the given Java source code.
+   * The method uses a regex pattern to search for a class declaration.
+   * If no class name is found, it defaults to {@code "Main"}.
+   *
+   * @param code the Java source code to analyze
+   * @return the extracted class name, or {@code "Main"} if no match is found
+   */
   private static String classNameExtractor(String code) {
     var m = CLASSNAME_PATTERN.matcher(code);
     return m.find() ? m.group(1) : "Main";
